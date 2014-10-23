@@ -1,7 +1,7 @@
 {
   "name": "async-timeout",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "async-timeout is a simple async task wrapper which triggers the callback. It supresses errors (by default), thus uses the timeout fallbacks also as an error fallback.",
   "main": "async-timeout.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
