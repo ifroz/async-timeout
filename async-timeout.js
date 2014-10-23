@@ -1,6 +1,9 @@
 'use strict';
 
-module.exports = function(asyncTask, timeoutMillisec, timeoutResponse) {
+module.exports = function(asyncTask, timeoutMillisec, timeoutResponse, supressErrors) {
+  if (supressErrors === undefined) {
+    supressErrors = true;
+  }
   return function(value, callback) {
     var isAsyncMap = (arguments.length !== 1);
     if (isAsyncMap === false) {
@@ -22,7 +25,11 @@ module.exports = function(asyncTask, timeoutMillisec, timeoutResponse) {
       if (! called) {
         called = true;
         if (err) {
-          callback(null, timeoutResponse);
+          if (supressErrors) {
+            callback(null, timeoutResponse);
+          } else {
+            callback(err);
+          }
         } else {
           callback(null, res);
         }
